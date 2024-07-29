@@ -1,0 +1,20 @@
+
+
+AllCops:
+  TargetRubyVersion: 3.3.2
+  NewCops: enable
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - db/migrate/*
+# ===================== Style ====================
+Style/NumericPredicate:
+  Enabled: false
+Style/Documentation:
+  Enabled: true
+  Exclude:
+    - config/**/*
+    - db/**/*
+    - app/models/application_record.rb
+    - app/helpers/application_helper.rb
+    - app/models/application_record.rb
