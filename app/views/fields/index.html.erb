@@ -1,0 +1,13 @@
+<h1>Fields:</h1>
+<ul>
+<% @fields.each do |field|%>
+  <li>
+  <%= field.name %> 
+  | <%= link_to('Show', field_path(field))%> 
+  | <%= link_to('Edit', edit_field_path(field))%> 
+  | <%= link_to 'Delete', field_path(field), data: { turbo_method: :delete } %>
+  </li>
+<% end %>
+</ul>
+
+<%= link_to('Add field', new_field_path)%>

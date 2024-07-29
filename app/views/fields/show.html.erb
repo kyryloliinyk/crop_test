@@ -1,0 +1,8 @@
+<h1><%= @field.name%></h1>
+
+<div>
+<%= link_to 'Delete', field_path(@field), data: { turbo_method: :delete } %>
+</div>
+<div>
+<%= link_to('<– all fields', fields_path)%>
+</div>
