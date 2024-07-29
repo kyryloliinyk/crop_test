@@ -59,6 +59,9 @@ GEM
       activemodel (= 7.1.3.4)
       activesupport (= 7.1.3.4)
       timeout (>= 0.4.0)
+    activerecord-postgis-adapter (9.0.2)
+      activerecord (~> 7.1.0)
+      rgeo-activerecord (~> 7.0.0)
     activestorage (7.1.3.4)
       actionpack (= 7.1.3.4)
       activejob (= 7.1.3.4)
@@ -110,6 +113,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.24.1)
     msgpack (1.7.2)
+    multi_json (1.15.0)
     mutex_m (0.2.0)
     net-imap (0.4.14)
       date
@@ -181,6 +185,13 @@ GEM
       psych (>= 4.0.0)
     reline (0.5.9)
       io-console (~> 0.5)
+    rgeo (3.0.1)
+    rgeo-activerecord (7.0.1)
+      activerecord (>= 5.0)
+      rgeo (>= 1.0.0)
+    rgeo-geojson (2.2.0)
+      multi_json (~> 1.15)
+      rgeo (>= 1.0.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -212,11 +223,13 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activerecord-postgis-adapter (~> 9.0, >= 9.0.2)
   bootsnap
   importmap-rails
   pg (~> 1.5, >= 1.5.6)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.4)
+  rgeo-geojson (~> 2.2)
   sprockets-rails
   turbo-rails
   tzinfo-data
