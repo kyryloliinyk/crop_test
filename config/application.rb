@@ -13,6 +13,8 @@ require 'action_controller/railtie'
 # require "action_mailbox/engine"
 # require "action_text/engine"
 require 'action_view/railtie'
+require 'active_record/connection_adapters/postgis_adapter'
+
 # require "action_cable/engine"
 # require "rails/test_unit/railtie"
 

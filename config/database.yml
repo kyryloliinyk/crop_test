@@ -1,5 +1,5 @@
 default: &default
-  adapter: postgresql
+  adapter: postgis
   encoding: unicode
   pool: <%= Rails.application.credentials.dig(:db, :pool) %>
   username: <%= ENV['DB_USERNAME'] || Rails.application.credentials.dig(:db, :username) %>
