@@ -3,6 +3,10 @@
 class Field < ApplicationRecord
   before_save :calculate_area
 
+  def shape_to_geojson
+    RGeo::GeoJSON.encode(shape)
+  end
+
   private
 
   def calculate_area

@@ -11,6 +11,7 @@ class FieldsController < ApplicationController
 
   def show
     @field = Field.find(params.require(:id))
+    @field_geojson = @field.shape_to_geojson
   end
 
   def create; end
