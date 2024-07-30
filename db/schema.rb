@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_065724) do
   create_table "fields", force: :cascade do |t|
     t.string "name"
     t.geography "shape", limit: {:srid=>4326, :type=>"multi_polygon", :geographic=>true}
-    t.integer "area"
+    t.decimal "area", precision: 15, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -2,6 +2,8 @@
 
 require 'rgeo'
 
+Field.destroy_all
+
 factory = RGeo::Geographic.spherical_factory(srid: 4326)
 
 polygon1 = factory.polygon(factory.linear_ring([
