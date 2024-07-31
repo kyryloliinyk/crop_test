@@ -24,4 +24,4 @@ polygon2 = factory.polygon(factory.linear_ring([
 
 shape = factory.multi_polygon([polygon1, polygon2])
 
-Field.create!(name: 'Example Field', shape:, area: 500)
+Field.create!(name: 'Example Field', shape:)
