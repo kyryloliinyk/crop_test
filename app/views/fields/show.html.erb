@@ -1,6 +1,6 @@
 <h1><%= @field.name %></h1>
 <p>Area: <%= @field.area %> square meters</p>
-<p>Shape (GeoJSON):</p>
-<pre><%= JSON.pretty_generate(@field_geojson) %></pre>
+<p>Shape:</p>
+<pre><%= JSON.pretty_generate(@field.geojson_shape) %></pre>
 
 <%= link_to('<– all fields', fields_path)%>
