@@ -6,22 +6,26 @@
 <div id="map" style="height: 400px;"></div>
 
 <script>
-  document.addEventListener('turbo:load', function() {
-    console.log("Turbo load event triggered");
-    var map = L.map('map').setView([0, 0], 2);
+  var map;
+
+  function initializeMap(geojsonData) {
+    if (map) { map.remove() };
+
+    map = L.map('map').setView([0, 0], 2);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var polygon = <%= raw @geojson %>;
-    console.log("GeoJSON data:", polygon);
+    const polygon = geojsonData;
 
-    var geoJsonLayer = L.geoJSON(polygon);
-    geoJsonLayer.addTo(map);
-    console.log("GeoJSON layer added to map");
+    const geoJsonLayer = L.geoJSON(polygon, {
+      onEachFeature: function (feature, layer) {
+      }
+    }).addTo(map);
 
     map.fitBounds(geoJsonLayer.getBounds());
-    console.log("Map bounds set");
-  });
+  }
+
+  document.addEventListener('turbo:load', () => initializeMap(<%= raw @geojson %>));
 </script>

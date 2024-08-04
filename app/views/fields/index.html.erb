@@ -1,13 +1,44 @@
 <h1>Fields:</h1>
 <ul>
-<% @fields.each do |field|%>
-  <li>
-  <%= field.name %> 
-  | <%= link_to('Show', field_path(field))%> 
-  | <%= link_to('Edit', edit_field_path(field))%> 
-  | <%= link_to 'Delete', field_path(field), data: { turbo_method: :delete } %>
-  </li>
-<% end %>
+  <% @fields.each do |field| %>
+    <li>
+      <%= field.name %> 
+      | <%= link_to('Show', field_path(field)) %> 
+      | <%= link_to('Edit', edit_field_path(field)) %> 
+      | <%= link_to 'Delete', field_path(field), data: { turbo_method: :delete } %>
+    </li>
+  <% end %>
 </ul>
 
-<%= link_to('Add field', new_field_path)%>
+<%= link_to('Add field', new_field_path) %>
+
+<div id="map" style="height: 600px;"></div>
+
+<script>
+  var map;
+
+  function initializeMap(geojsonData) {
+    if (map) { map.remove() };
+
+    map = L.map('map').setView([50.45, 30.52], 10);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    const combinedGeoJSON = geojsonData;
+
+    const geoJsonLayer = L.geoJSON(combinedGeoJSON, {
+      onEachFeature: function (feature, layer) {
+      }
+    }).addTo(map);
+
+    const bounds = L.latLngBounds();
+    geoJsonLayer.eachLayer(function(layer) {
+      bounds.extend(layer.getBounds());
+    });
+    map.fitBounds(bounds);
+  }
+
+  document.addEventListener('turbo:load', () => initializeMap(<%= raw @combined_geojson %>));
+</script>

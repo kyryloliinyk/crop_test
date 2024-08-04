@@ -7,6 +7,14 @@ class FieldsController < ApplicationController
 
   def index
     @fields = Field.all
+    features = @fields.map do |field|
+      JSON.parse(field.geojson_shape.to_json)
+    end
+
+    @combined_geojson = {
+      type: 'FeatureCollection',
+      features: features
+    }.to_json
   end
 
   def show
