@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>CropioTest</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>CropioTest</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' %>
+  <%= stylesheet_link_tag 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' %>
   <%= javascript_include_tag 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js' %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "fields", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "fields", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <%= yield %>
+</body>
 </html>
