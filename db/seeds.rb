@@ -22,6 +22,24 @@ polygon2 = factory.polygon(factory.linear_ring([
                                                  factory.point(26.5, 48.0)
                                                ]))
 
-shape = factory.multi_polygon([polygon1, polygon2])
+polygon3 = factory.polygon(factory.linear_ring([
+                                                 factory.point(30.5, 50.3),
+                                                 factory.point(30.6, 50.4),
+                                                 factory.point(30.7, 50.3),
+                                                 factory.point(30.6, 50.2),
+                                                 factory.point(30.5, 50.3)
+                                               ]))
 
-Field.create!(name: 'Example Field', shape:)
+polygon4 = factory.polygon(factory.linear_ring([
+                                                 factory.point(30.8, 50.3),
+                                                 factory.point(30.9, 50.4),
+                                                 factory.point(31.0, 50.3),
+                                                 factory.point(30.9, 50.2),
+                                                 factory.point(30.8, 50.3)
+                                               ]))
+
+ternopil_shape = factory.multi_polygon([polygon1, polygon2])
+kyiv_shape = factory.multi_polygon([polygon3, polygon4])
+
+Field.create!(name: 'Ternopil Field', shape: ternopil_shape)
+Field.create!(name: 'Kyiv Field', shape: kyiv_shape)
