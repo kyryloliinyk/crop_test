@@ -2,6 +2,7 @@
 # Ignore bundler config.
 /.bundle
 
+#  NOT Ignore all environment files (except templates).
 !/.env*
 !/.env*.erb
 
@@ -10,5 +11,10 @@ log/
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
 
 /public/assets
