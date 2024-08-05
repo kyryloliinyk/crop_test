@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Instructions:
 
-Things you may want to cover:
+* clone repo
+* run `docker-compose up` in project root at `main` branch
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Note: if you get an error related to assets compiling switch to `docker-assets-fix` branch
