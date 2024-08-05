@@ -1,9 +1,44 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# frozen_string_literal: true
+
+require 'rgeo'
+
+puts 'Starting seeding...'
+
+Field.destroy_all
+
+factory = RGeo::Geographic.spherical_factory(srid: 4326)
+
+polygon1 = factory.polygon(factory.linear_ring([
+                                                 factory.point(24.0, 48.0),
+                                                 factory.point(24.0, 49.0),
+                                                 factory.point(25.0, 50.0),
+                                                 factory.point(26.0, 48.0),
+                                                 factory.point(24.0, 48.0)
+                                               ]))
+polygon2 = factory.polygon(factory.linear_ring([
+                                                 factory.point(26.5, 48.0),
+                                                 factory.point(27.0, 49.0),
+                                                 factory.point(27.5, 50.0),
+                                                 factory.point(26.0, 50.0),
+                                                 factory.point(26.5, 48.0)
+                                               ]))
+polygon3 = factory.polygon(factory.linear_ring([
+                                                 factory.point(30.5, 50.3),
+                                                 factory.point(30.6, 50.4),
+                                                 factory.point(30.7, 50.3),
+                                                 factory.point(30.6, 50.2),
+                                                 factory.point(30.5, 50.3)
+                                               ]))
+polygon4 = factory.polygon(factory.linear_ring([
+                                                 factory.point(30.8, 50.3),
+                                                 factory.point(30.9, 50.4),
+                                                 factory.point(31.0, 50.3),
+                                                 factory.point(30.9, 50.2),
+                                                 factory.point(30.8, 50.3)
+                                               ]))
+
+ternopil_shape = factory.multi_polygon([polygon1, polygon2])
+kyiv_shape = factory.multi_polygon([polygon3, polygon4])
+
+Field.create!(name: 'Ternopil Field', shape: ternopil_shape)
+Field.create!(name: 'Kyiv Field', shape: kyiv_shape)

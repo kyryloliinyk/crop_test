@@ -1,16 +1,18 @@
 default: &default
-  adapter: postgresql
+  adapter: postgis
   encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= Rails.application.credentials.dig(:db, :pool) %>
+  username: <%= ENV['DB_USERNAME'] || Rails.application.credentials.dig(:db, :username) %>
+  password: <%= ENV['DB_PASSWORD'] || Rails.application.credentials.dig(:db, :password) %>
 
 development:
   <<: *default
   database: cropio_test_development
+
 test:
   <<: *default
   database: cropio_test_test
+
 production:
   <<: *default
   database: cropio_test_production
-  username: cropio_test
-  password: <%= ENV["CROPIO_TEST_DATABASE_PASSWORD"] %>

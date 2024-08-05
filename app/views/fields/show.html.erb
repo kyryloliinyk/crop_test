@@ -1,0 +1,31 @@
+<%= link_to('<– all fields', fields_path) %>
+
+<h1><%= @field.name %></h1>
+<p>Area: <%= @field.area %> square meters</p>
+
+<div id="map" style="height: 400px;"></div>
+
+<script>
+  var map;
+
+  function initializeMap(geojsonData) {
+    if (map) { map.remove() };
+
+    map = L.map('map').setView([0, 0], 2);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    const polygon = geojsonData;
+
+    const geoJsonLayer = L.geoJSON(polygon, {
+      onEachFeature: function (feature, layer) {
+      }
+    }).addTo(map);
+
+    map.fitBounds(geoJsonLayer.getBounds());
+  }
+
+  document.addEventListener('turbo:load', () => initializeMap(<%= raw @geojson %>));
+</script>
