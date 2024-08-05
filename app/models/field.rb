@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rgeo'
+
 class Field < ApplicationRecord
   before_save :calculate_area
 
